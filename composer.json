@@ -1,5 +1,5 @@
 {
-    "name": "unicodeveloper/laravel-paystack",
+    "name": "aldok10/larapaystack",
     "description": "A Laravel Package for Paystack",
     "keywords": ["php","github", "laravel","Open Source","payments", "subscription", "paystack", "paystack.co","laravel 6", "laravel 7", "laravel 8"],
     "license": "MIT",
@@ -30,12 +30,12 @@
               "src/Support/helpers.php"
             ],
         "psr-4": {
-          "Unicodeveloper\\Paystack\\": "src/"
+          "Mr20k\\Paystack\\": "src/"
         }
    },
    "autoload-dev": {
         "psr-4": {
-            "Unicodeveloper\\Paystack\\Test\\": "tests"
+            "Mr20k\\Paystack\\Test\\": "tests"
         }
     },
     "scripts": {
@@ -44,10 +44,10 @@
    "extra": {
     "laravel": {
         "providers": [
-            "Unicodeveloper\\Paystack\\PaystackServiceProvider"
+            "Mr20k\\Paystack\\PaystackServiceProvider"
         ],
         "aliases": {
-            "Paystack": "Unicodeveloper\\Paystack\\Facades\\Paystack"
+            "Paystack": "Mr20k\\Paystack\\Facades\\Paystack"
         }
     }
   }

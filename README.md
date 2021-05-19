@@ -1,10 +1,10 @@
 # laravel-paystack
 
-[![Latest Stable Version](https://poser.pugx.org/unicodeveloper/laravel-paystack/v/stable.svg)](https://packagist.org/packages/unicodeveloper/laravel-paystack)
-[![License](https://poser.pugx.org/unicodeveloper/laravel-paystack/license.svg)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/unicodeveloper/laravel-paystack.svg)](https://travis-ci.org/unicodeveloper/laravel-paystack)
-[![Quality Score](https://img.shields.io/scrutinizer/g/unicodeveloper/laravel-paystack.svg?style=flat-square)](https://scrutinizer-ci.com/g/unicodeveloper/laravel-paystack)
-[![Total Downloads](https://img.shields.io/packagist/dt/unicodeveloper/laravel-paystack.svg?style=flat-square)](https://packagist.org/packages/unicodeveloper/laravel-paystack)
+[![Latest Stable Version](https://poser.pugx.org/aldok10/larapaystack/v/stable.svg)](https://packagist.org/packages/aldok10/larapaystack)
+[![License](https://poser.pugx.org/aldok10/larapaystack/license.svg)](LICENSE.md)
+[![Build Status](https://img.shields.io/travis/aldok10/larapaystack.svg)](https://travis-ci.org/aldok10/larapaystack)
+[![Quality Score](https://img.shields.io/scrutinizer/g/aldok10/larapaystack.svg?style=flat-square)](https://scrutinizer-ci.com/g/aldok10/larapaystack)
+[![Total Downloads](https://img.shields.io/packagist/dt/aldok10/larapaystack.svg?style=flat-square)](https://packagist.org/packages/aldok10/larapaystack)
 
 > A Laravel Package for working with Paystack seamlessly
 
@@ -15,13 +15,13 @@
 To get the latest version of Laravel Paystack, simply require it
 
 ```bash
-composer require unicodeveloper/laravel-paystack
+composer require aldok10/larapaystack
 ```
 
 Or add the following line to the require block of your `composer.json` file.
 
 ```
-"unicodeveloper/laravel-paystack": "1.0.*"
+"aldok10/larapaystack": "1.0.*"
 ```
 
 You'll then need to run `composer install` or `composer update` to download it and have the autoloader updated.
@@ -33,21 +33,21 @@ Once Laravel Paystack is installed, you need to register the service provider. O
 ```php
 'providers' => [
     ...
-    Unicodeveloper\Paystack\PaystackServiceProvider::class,
+    Mr20k\Paystack\PaystackServiceProvider::class,
     ...
 ]
 ```
 
-> If you use **Laravel >= 5.5** you can skip this step and go to [**`configuration`**](https://github.com/unicodeveloper/laravel-paystack#configuration)
+> If you use **Laravel >= 5.5** you can skip this step and go to [**`configuration`**](https://github.com/aldok10/larapaystack#configuration)
 
-* `Unicodeveloper\Paystack\PaystackServiceProvider::class`
+* `Mr20k\Paystack\PaystackServiceProvider::class`
 
 Also, register the Facade like so:
 
 ```php
 'aliases' => [
     ...
-    'Paystack' => Unicodeveloper\Paystack\Facades\Paystack::class,
+    'Paystack' => Mr20k\Paystack\Facades\Paystack::class,
     ...
 ]
 ```
@@ -57,7 +57,7 @@ Also, register the Facade like so:
 You can publish the configuration file using this command:
 
 ```bash
-php artisan vendor:publish --provider="Unicodeveloper\Paystack\PaystackServiceProvider"
+php artisan vendor:publish --provider="Mr20k\Paystack\PaystackServiceProvider"
 ```
 
 A configuration-file named `paystack.php` with some sensible defaults will be placed in your `config` directory:

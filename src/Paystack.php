@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Unicodeveloper\Paystack;
+namespace Mr20k\Paystack;
 
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Config;
-use Unicodeveloper\Paystack\Exceptions\IsNullException;
-use Unicodeveloper\Paystack\Exceptions\PaymentVerificationFailedException;
+use Mr20k\Paystack\Exceptions\IsNullException;
+use Mr20k\Paystack\Exceptions\PaymentVerificationFailedException;
 
 class Paystack
 {
@@ -101,18 +101,17 @@ class Paystack
     }
 
 
-     /**
+    /**
 
-     * Initiate a payment request to Paystack
-     * Included the option to pass the payload to this method for situations
-     * when the payload is built on the fly (not passed to the controller from a view)
-     * @return Paystack
-     */
+    * Initiate a payment request to Paystack
+    * Included the option to pass the payload to this method for situations
+    * when the payload is built on the fly (not passed to the controller from a view)
+    * @return Paystack
+    */
 
-    public function makePaymentRequest( $data = null)
+    public function makePaymentRequest($data = null)
     {
-        if ( $data == null ) {
-
+        if ($data == null) {
             $quantity = intval(request()->quantity ?? 1);
 
             $data = array_filter([
@@ -136,7 +135,7 @@ class Paystack
                 /*
                 * to allow use of metadata on Paystack dashboard and a means to return additional data back to redirect url
                 * form need an input field: <input type="hidden" name="metadata" value="{{ json_encode($array) }}" >
-                * array must be set up as: 
+                * array must be set up as:
                 * $array = [ 'custom_fields' => [
                 *                   ['display_name' => "Cart Id", "variable_name" => "cart_id", "value" => "2"],
                 *                   ['display_name' => "Sex", "variable_name" => "sex", "value" => "female"],
@@ -190,12 +189,12 @@ class Paystack
         return $this;
     }
 
-     /**
-     * Get the authorization callback response
-     * In situations where Laravel serves as an backend for a detached UI, the api cannot redirect
-     * and might need to take different actions based on the success or not of the transaction
-     * @return array
-     */
+    /**
+    * Get the authorization callback response
+    * In situations where Laravel serves as an backend for a detached UI, the api cannot redirect
+    * and might need to take different actions based on the success or not of the transaction
+    * @return array
+    */
     public function getAuthorizationResponse($data)
     {
         $this->makePaymentRequest($data);
@@ -351,7 +350,6 @@ class Paystack
         $this->setRequestOptions();
 
         return $this->setHttpResponse("/plan", 'POST', $data)->getResponse();
-
     }
 
     /**
@@ -598,13 +596,14 @@ class Paystack
         return $this->setHttpResponse('/page/'.$page_id, 'PUT', $data)->getResponse();
     }
 
-     /**
-     * Creates a subaccount to be used for split payments . Required    params are business_name , settlement_bank , account_number ,   percentage_charge
-     *
-     * @return array
-     */
+    /**
+    * Creates a subaccount to be used for split payments . Required    params are business_name , settlement_bank , account_number ,   percentage_charge
+    *
+    * @return array
+    */
 
-    public function createSubAccount(){
+    public function createSubAccount()
+    {
         $data = [
             "business_name" => request()->business_name,
             "settlement_bank" => request()->settlement_bank,
@@ -619,31 +618,28 @@ class Paystack
 
         $this->setRequestOptions();
         return $this->setHttpResponse('/subaccount', 'POST', array_filter($data))->getResponse();
-
     }
 
-     /**
-     * Fetches details of a subaccount
-     * @param subaccount code
-     * @return array
-     */
-    public function fetchSubAccount($subaccount_code){
-
+    /**
+    * Fetches details of a subaccount
+    * @param subaccount code
+    * @return array
+    */
+    public function fetchSubAccount($subaccount_code)
+    {
         $this->setRequestOptions();
-        return $this->setHttpResponse("/subaccount/{$subaccount_code}","GET",[])->getResponse();
-
+        return $this->setHttpResponse("/subaccount/{$subaccount_code}", "GET", [])->getResponse();
     }
 
-     /**
-     * Lists all the subaccounts associated with the account
-     * @param $per_page - Specifies how many records to retrieve per page , $page - SPecifies exactly what page to retrieve
-     * @return array
-     */
-    public function listSubAccounts($per_page,$page){
-
+    /**
+    * Lists all the subaccounts associated with the account
+    * @param $per_page - Specifies how many records to retrieve per page , $page - SPecifies exactly what page to retrieve
+    * @return array
+    */
+    public function listSubAccounts($per_page, $page)
+    {
         $this->setRequestOptions();
-        return $this->setHttpResponse("/subaccount/?perPage=".(int) $per_page."&page=".(int) $page,"GET")->getResponse();
-
+        return $this->setHttpResponse("/subaccount/?perPage=".(int) $per_page."&page=".(int) $page, "GET")->getResponse();
     }
 
 
@@ -653,7 +649,8 @@ class Paystack
      * @return array
      */
 
-    public function updateSubAccount($subaccount_code){
+    public function updateSubAccount($subaccount_code)
+    {
         $data = [
             "business_name" => request()->business_name,
             "settlement_bank" => request()->settlement_bank,
@@ -669,6 +666,5 @@ class Paystack
 
         $this->setRequestOptions();
         return $this->setHttpResponse("/subaccount/{$subaccount_code}", "PUT", array_filter($data))->getResponse();
-
     }
 }
